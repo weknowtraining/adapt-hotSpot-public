@@ -28,11 +28,8 @@ define([
             this.listenTo(this.model, 'change:_isVisible', this.toggleVisibility);
             this.model.set('_globals', Adapt.course.get('_globals'));
             this.preRender();
-            if (Adapt.device.screenSize == 'large') {
-                this.render();
-            } else {
-                this.reRender();
-            }
+            this.render();
+                
         },
 
         events: {
@@ -44,7 +41,6 @@ define([
             this.model.set("_isRadio", (this.model.get('_selectable') === 1));
             this.model.set('_selectedItems', []);
 
-            this.listenTo(Adapt, 'device:changed', this.reRender, this);
             this.setupRandomisation();
         },
 
@@ -271,44 +267,6 @@ define([
             _.each(this.model.get('_items'), function(item, index) {
                 this.setOptionSelected(index, this.model.get('_userAnswer')[item._index]);
             }, this);
-        },
-
-        reRender: function() {
-            if (Adapt.device.screenSize != 'large') {
-                this.replaceWithGmcq();
-            }
-        },
-
-        replaceWithGmcq: function() {
-            if (!Adapt.componentStore.gMcq) throw "GMcq not included in build";
-            var Gmcq = Adapt.componentStore.gMcq;
-
-            var model = this.prepareGmcqModel();
-            var newGmcq = new Gmcq({ model: model });
-            var $container = $(".component-container", $("." + this.model.get("_parentId")));
-
-            newGmcq.reRender();
-            if(model.get('_isSubmitted')) {
-                newGmcq.showMarking();
-            }
-
-            $container.append(newGmcq.$el);
-
-            Adapt.trigger('device:resize');
-            _.defer(_.bind(function () {
-                this.remove();
-            }, this));
-        },
-
-        prepareGmcqModel: function() {
-            var model = this.model;
-
-            model.set({
-                '_component': 'gMcq',
-                '_wasHotSpot': true
-            });
-
-            return model;
         }
     });
 
