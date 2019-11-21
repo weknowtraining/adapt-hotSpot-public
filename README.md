@@ -2,7 +2,7 @@
 
 A graphical multiple choice question
 
-##Installation
+## Installation
 
 
 First, be sure to install the [Adapt Command Line Interface](https://github.com/adaptlearning/adapt-cli), then from the command line run:-
@@ -17,7 +17,7 @@ This component can also be installed by adding the component to the adapt.json f
 
 To Be Updated
 
-##Settings overview
+## Settings overview
 
 An complete example of this components settings can be found in the [example.json](https://github.com/BATraining/adapt-hotSpot/blob/master/example.json) file. A description of the core settings can be found at: [Core model attributes](https://github.com/adaptlearning/adapt_framework/wiki/Core-model-attributes)
 
