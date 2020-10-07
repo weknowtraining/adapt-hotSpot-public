@@ -2,6 +2,8 @@
 
 A hotspot component where learner must select the correct pins.
 
+![hotspot](https://user-images.githubusercontent.com/53190802/95392714-7a11f780-08b6-11eb-9e03-973ece230b75.gif)
+
 ##Installation
 
 
